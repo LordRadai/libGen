@@ -36,9 +36,12 @@ int main(int argc, char* argv[]) {
 
 	std::string inputDll = argv[1];
 	std::string dllName = std::filesystem::path(argv[1]).replace_extension().string(); // Get just the file name
-    std::string dumpbinOut = dllName + ".exports.txt";
-    std::string defFile = dllName + ".def";
-    std::string libFile = dllName + ".lib";
+
+	std::string outDir = "output\\";
+	std::filesystem::create_directories(outDir); // Ensure output directory exists
+    std::string dumpbinOut = outDir + dllName + ".exports.txt";
+    std::string defFile = outDir + dllName + ".def";
+    std::string libFile = outDir + dllName + ".lib";
 
     // Check DLL exists
     if (!fileExists(inputDll)) {
